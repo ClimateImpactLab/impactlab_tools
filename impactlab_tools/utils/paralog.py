@@ -124,6 +124,30 @@ class StatusManager(object):
 
         return False
 
+    def extra_log(self, suffix, msg):
+
+        ''' writes some extra information on the job to an extra log file identified by self.logpath + a suffix. 
+        
+        Parameters
+        ----------
+
+        suffix: str 
+            to be appended to `self.logpath` to create an extra log file 
+        msg: str
+            to be written to the extra log file 
+
+        Returns 
+        --------
+        str : the extra log file path. 
+        '''
+
+        filepath = self.logpath[:-4] + suffix + '.log'
+        
+        with open(filepath, 'a') as f:
+            f.write(msg)
+
+        return filepath 
+
     @staticmethod
     def globalstatus_filepath(dirpath):
         """The path to the global status for the directory."""
